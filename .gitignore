@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Project Outputs and generated files
+*.pdf
+*.csv
+*.json
+experiments/results/
+payload_summary.json
+payload_summary.csv
+speedup_results.csv
+ram_estimates.csv
+amdahl_speedup.pdf
+gustafson_speedup.pdf
+
+# Logs
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
