@@ -41,3 +41,11 @@ class BudgetConfig:
     scaling_steps: int = 600
     churn_steps: int = 1800
     max_epochs: int = 1
+
+
+@dataclass(frozen=True)
+class SeedConfig:
+    seed: int = 42
+    deterministic: bool = True
+    cudnn_deterministic: bool = True
+    cudnn_benchmark: bool = False
