@@ -8,6 +8,7 @@ from .config import (
 	TokenizerConfig,
 	effective_global_batch_size,
 )
+from .dataloader import build_distributed_sampler
 from .repro import set_seed
 
 __all__ = [
@@ -17,6 +18,7 @@ __all__ = [
 	"DataConfig",
 	"SeedConfig",
 	"TokenizerConfig",
+	"build_distributed_sampler",
 	"effective_global_batch_size",
 	"set_seed",
 ]
