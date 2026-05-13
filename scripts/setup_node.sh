@@ -5,6 +5,13 @@ PYTHON_BIN=${PYTHON_BIN:-python3}
 VENV_DIR=${VENV_DIR:-.venv}
 CUDA_FLAVOR=${CUDA_FLAVOR:-cu121}
 TORCH_INDEX_URL=${TORCH_INDEX_URL:-https://download.pytorch.org/whl/${CUDA_FLAVOR}}
+TORCH_VERSION=${TORCH_VERSION:-2.2.2}
+TORCHVISION_VERSION=${TORCHVISION_VERSION:-0.17.2}
+TORCHAUDIO_VERSION=${TORCHAUDIO_VERSION:-2.2.2}
+TRANSFORMERS_VERSION=${TRANSFORMERS_VERSION:-4.40.2}
+DATASETS_VERSION=${DATASETS_VERSION:-2.19.1}
+ACCELERATE_VERSION=${ACCELERATE_VERSION:-0.30.1}
+PSUTIL_VERSION=${PSUTIL_VERSION:-5.9.8}
 
 if [ ! -d "$VENV_DIR" ]; then
   "$PYTHON_BIN" -m venv "$VENV_DIR"
@@ -14,5 +21,13 @@ fi
 source "$VENV_DIR/bin/activate"
 
 pip install --upgrade pip setuptools wheel
-pip install torch torchvision torchaudio --index-url "$TORCH_INDEX_URL"
-pip install transformers datasets accelerate psutil
+pip install \
+  "torch==${TORCH_VERSION}" \
+  "torchvision==${TORCHVISION_VERSION}" \
+  "torchaudio==${TORCHAUDIO_VERSION}" \
+  --index-url "$TORCH_INDEX_URL"
+pip install \
+  "transformers==${TRANSFORMERS_VERSION}" \
+  "datasets==${DATASETS_VERSION}" \
+  "accelerate==${ACCELERATE_VERSION}" \
+  "psutil==${PSUTIL_VERSION}"
