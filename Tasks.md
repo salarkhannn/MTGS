@@ -194,20 +194,20 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.2.1.4 Add restart-safe dataloader state restoration.
 
 ### D3-3.3 Baseline BSP Implementation
-- [ ] D3-3.3.1 Define baseline training loop behavior and metrics.
-- [ ] D3-3.3.2 Disable MTGS paths for clean baseline comparison.
-- [ ] D3-3.3.3 Validate convergence sanity on short pilot run.
+- [x] D3-3.3.1 Define baseline training loop behavior and metrics.
+- [x] D3-3.3.2 Disable MTGS paths for clean baseline comparison.
+- [x] D3-3.3.3 Validate convergence sanity on short pilot run.
 
 #### D3-3.3.1 Coding: Baseline Training Script
-- [ ] D3-3.3.1.1 Implement distributed launch entrypoint.
-- [ ] D3-3.3.1.2 Implement model, optimizer, and scheduler setup.
-- [ ] D3-3.3.1.3 Implement robust checkpoint save/load for restart tests.
-- [ ] D3-3.3.1.4 Add structured logging for runtime and throughput metrics.
+- [x] D3-3.3.1.1 Implement distributed launch entrypoint.
+- [x] D3-3.3.1.2 Implement model, optimizer, and scheduler setup.
+- [x] D3-3.3.1.3 Implement robust checkpoint save/load for restart tests.
+- [x] D3-3.3.1.4 Add structured logging for runtime and throughput metrics.
 
 #### D3-3.3.2 Coding: Throughput Logger
-- [ ] D3-3.3.2.1 Compute tokens per second at step and epoch granularity.
-- [ ] D3-3.3.2.2 Record warmup-excluded and inclusive throughput.
-- [ ] D3-3.3.2.3 Export CSV with timestamp, rank, step, throughput, and status.
+- [x] D3-3.3.2.1 Compute tokens per second at step and epoch granularity.
+- [x] D3-3.3.2.2 Record warmup-excluded and inclusive throughput.
+- [x] D3-3.3.2.3 Export CSV with timestamp, rank, step, throughput, and status.
 
 ### D3-3.4 C-6 Novelty Core: Comm Hook Interception
 - [ ] D3-3.4.1 Define exact interception point in distributed stack.
