@@ -172,7 +172,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.1.1.1 Write idempotent provisioning script or IaC template.
 - [x] D3-3.1.1.2 Parameterize node count, GPU type, and region.
 - [x] D3-3.1.1.3 Parameterize firewall rules for NCCL and orchestration channels.
-- [ ] D3-3.1.1.4 Add teardown command path to avoid cost leakage.
+- [x] D3-3.1.1.4 Add teardown command path to avoid cost leakage.
 
 #### D3-3.1.2 Coding: Environment Setup Script
 - [ ] D3-3.1.2.1 Create setup script for PyTorch, CUDA runtime deps, and transformers stack.
