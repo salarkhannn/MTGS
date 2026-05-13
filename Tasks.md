@@ -169,7 +169,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [ ] D3-3.1.6 Verify CUDA and driver parity across nodes.
 
 #### D3-3.1.1 Coding: Provisioning Script
-- [ ] D3-3.1.1.1 Write idempotent provisioning script or IaC template.
+- [x] D3-3.1.1.1 Write idempotent provisioning script or IaC template.
 - [ ] D3-3.1.1.2 Parameterize node count, GPU type, and region.
 - [ ] D3-3.1.1.3 Parameterize firewall rules for NCCL and orchestration channels.
 - [ ] D3-3.1.1.4 Add teardown command path to avoid cost leakage.
