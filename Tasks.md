@@ -181,7 +181,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.1.2.4 Store environment manifest file with exact versions.
 
 ### D3-3.2 Workload Modeling and Data Pipeline
-- [ ] D3-3.2.1 Freeze dataset version and preprocessing pipeline.
+- [x] D3-3.2.1 Freeze dataset version and preprocessing pipeline.
 - [ ] D3-3.2.2 Define tokenization strategy and sequence length.
 - [ ] D3-3.2.3 Define global batch size and micro-batch decomposition.
 - [ ] D3-3.2.4 Define epoch/step budget for each experiment type.
