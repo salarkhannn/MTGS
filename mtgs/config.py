@@ -13,3 +13,11 @@ class DataConfig:
     text_column: str = "text"
     strip_whitespace: bool = True
     drop_empty: bool = True
+
+
+@dataclass(frozen=True)
+class TokenizerConfig:
+    tokenizer_name: str = "distilbert-base-uncased"
+    max_seq_length: int = 128
+    padding: str = "max_length"
+    truncation: bool = True
