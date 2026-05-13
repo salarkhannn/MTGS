@@ -1,0 +1,20 @@
+[project]
+name = "mtgs"
+version = "0.1.0"
+description = "Micro-Transactional Gradient Synchronization"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "MTGS Team" }]
+
+dependencies = [
+  "torch",
+  "transformers",
+  "datasets",
+  "accelerate",
+  "psutil",
+  "pyyaml",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
