@@ -184,7 +184,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.2.1 Freeze dataset version and preprocessing pipeline.
 - [x] D3-3.2.2 Define tokenization strategy and sequence length.
 - [x] D3-3.2.3 Define global batch size and micro-batch decomposition.
-- [ ] D3-3.2.4 Define epoch/step budget for each experiment type.
+- [x] D3-3.2.4 Define epoch/step budget for each experiment type.
 - [ ] D3-3.2.5 Define random seed policy and determinism settings.
 
 #### D3-3.2.1 Coding: Dataloader Logic
