@@ -11,6 +11,10 @@ from .config import (
 from .dataloader import (
 	build_distributed_sampler,
 	compute_shard_indices,
+	get_sampler_state,
+	load_sampler_state,
+	save_sampler_state,
+	set_sampler_state,
 	shard_stats,
 	validate_no_overlap,
 )
@@ -26,6 +30,10 @@ __all__ = [
 	"build_distributed_sampler",
 	"compute_shard_indices",
 	"effective_global_batch_size",
+	"get_sampler_state",
+	"load_sampler_state",
+	"save_sampler_state",
+	"set_sampler_state",
 	"shard_stats",
 	"set_seed",
 	"validate_no_overlap",

@@ -191,7 +191,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.2.1.1 Implement DistributedSampler with rank-aware sharding.
 - [x] D3-3.2.1.2 Validate no sample overlap across ranks in one epoch.
 - [x] D3-3.2.1.3 Log shard statistics per rank for verification.
-- [ ] D3-3.2.1.4 Add restart-safe dataloader state restoration.
+- [x] D3-3.2.1.4 Add restart-safe dataloader state restoration.
 
 ### D3-3.3 Baseline BSP Implementation
 - [ ] D3-3.3.1 Define baseline training loop behavior and metrics.

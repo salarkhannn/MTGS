@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import json
 import math
+from pathlib import Path
 from typing import Any, Dict, List
 
 
@@ -104,3 +106,28 @@ def shard_stats(
         "unique_coverage": len(unique_indices),
         "overlap_found": overlap_info["overlap_found"],
     }
+
+
+def get_sampler_state(sampler: Any) -> Dict[str, Any]:
+    return {
+        "epoch": getattr(sampler, "epoch", 0),
+        "seed": getattr(sampler, "seed", None),
+    }
+
+
+def set_sampler_state(sampler: Any, state: Dict[str, Any]) -> None:
+    epoch = state.get("epoch")
+    if epoch is not None and hasattr(sampler, "set_epoch"):
+        sampler.set_epoch(epoch)
+
+    seed = state.get("seed")
+    if seed is not None and hasattr(sampler, "seed"):
+        sampler.seed = seed
+
+
+def save_sampler_state(state: Dict[str, Any], path: str) -> None:
+    Path(path).write_text(json.dumps(state, indent=2), encoding="utf-8")
+
+
+def load_sampler_state(path: str) -> Dict[str, Any]:
+    return json.loads(Path(path).read_text(encoding="utf-8"))
