@@ -177,7 +177,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 #### D3-3.1.2 Coding: Environment Setup Script
 - [x] D3-3.1.2.1 Create setup script for PyTorch, CUDA runtime deps, and transformers stack.
 - [x] D3-3.1.2.2 Pin package versions for reproducibility.
-- [ ] D3-3.1.2.3 Add post-install validation command suite.
+- [x] D3-3.1.2.3 Add post-install validation command suite.
 - [ ] D3-3.1.2.4 Store environment manifest file with exact versions.
 
 ### D3-3.2 Workload Modeling and Data Pipeline
