@@ -175,7 +175,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.1.1.4 Add teardown command path to avoid cost leakage.
 
 #### D3-3.1.2 Coding: Environment Setup Script
-- [ ] D3-3.1.2.1 Create setup script for PyTorch, CUDA runtime deps, and transformers stack.
+- [x] D3-3.1.2.1 Create setup script for PyTorch, CUDA runtime deps, and transformers stack.
 - [ ] D3-3.1.2.2 Pin package versions for reproducibility.
 - [ ] D3-3.1.2.3 Add post-install validation command suite.
 - [ ] D3-3.1.2.4 Store environment manifest file with exact versions.
