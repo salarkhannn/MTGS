@@ -157,7 +157,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 
 ### D3-G.0 Entry Gate
 - [x] D3-G.0.1 Confirm D2 sign-off completed.
-- [ ] D3-G.0.2 Confirm implementation plan baselines and acceptance metrics are frozen.
+- [x] D3-G.0.2 Confirm implementation plan baselines and acceptance metrics are frozen.
 - [ ] D3-G.0.3 Confirm experiment matrix is approved before runs.
 
 ### D3-3.1 Distributed Environment Provisioning
