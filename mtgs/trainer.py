@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -18,6 +19,7 @@ from .config import SeedConfig
 from .dataloader import build_distributed_sampler
 from .hooks.comm_hook import MTGSState, register_mtgs_comm_hook
 from .hooks.transaction import TransactionManager
+from .profiling.ettr_timer import ETTRTimer
 from .profiling.throughput import ThroughputLogger
 from .shadow.copy_stream import ShadowCopyManager
 from .repro import set_seed
@@ -52,6 +54,7 @@ def parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--checkpoint-path", default="")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--checkpoint-every", type=int, default=0)
+    parser.add_argument("--ettr-path", default="")
     parser.add_argument("--mtgs-disable-hook", action="store_true")
     parser.add_argument("--mtgs-disable-shadow", action="store_true")
     parser.add_argument("--mtgs-disable-2pc", action="store_true")
@@ -120,6 +123,8 @@ def run(args: argparse.Namespace) -> int:
         warmup_steps=args.warmup_steps,
     )
     events = JsonlLogger(output_dir / f"train_rank{context.rank}.jsonl")
+    ettr_timer = ETTRTimer()
+    ettr_path = Path(args.ettr_path) if args.ettr_path else output_dir / "ettr_events.csv"
     events.log(
         "run_start",
         mode=args.mode,
@@ -211,10 +216,26 @@ def run(args: argparse.Namespace) -> int:
         loss = outputs["loss"]
         loss.backward()
         if mtgs_state is not None and not context.initialized and mtgs_state.force_abort:
+            event_id = f"rank{context.rank}-step{step}-forced-abort"
+            ettr_timer.mark_detected(
+                event_id,
+                rank=context.rank,
+                step=step,
+                reason="forced_abort",
+            )
             mtgs_state.rollback("forced_abort")
             events.log("step_aborted", rank=context.rank, step=step, reason="forced_abort")
             optimizer.zero_grad(set_to_none=True)
             mtgs_state.complete_step()
+            event = ettr_timer.mark_resumed(event_id)
+            ettr_timer.write_events(ettr_path)
+            events.log(
+                "ettr_recorded",
+                rank=context.rank,
+                step=step,
+                event_id=event.event_id,
+                ettr_ms=event.ettr_ms,
+            )
             continue
 
         optimizer.step()
@@ -275,6 +296,10 @@ def run(args: argparse.Namespace) -> int:
         steps=args.steps,
         first_loss=losses[0] if losses else None,
         last_loss=losses[-1] if losses else None,
+    )
+    (output_dir / "ettr_summary.json").write_text(
+        json.dumps(ettr_timer.summary(), indent=2),
+        encoding="utf-8",
     )
     cleanup_distributed()
     return 0

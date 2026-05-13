@@ -257,58 +257,58 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.6.3.3 Add integration test path for normal and failure cases.
 
 ### D3-3.7 Fault Injection Scripting
-- [ ] D3-3.7.1 Define failure injection schedule distributions.
-- [ ] D3-3.7.2 Define safe process targeting to avoid killing orchestrator unexpectedly.
-- [ ] D3-3.7.3 Define run labeling scheme for reproducible fault scenarios.
+- [x] D3-3.7.1 Define failure injection schedule distributions.
+- [x] D3-3.7.2 Define safe process targeting to avoid killing orchestrator unexpectedly.
+- [x] D3-3.7.3 Define run labeling scheme for reproducible fault scenarios.
 
 #### D3-3.7.1 Coding: SIGKILL Daemon
-- [ ] D3-3.7.1.1 Implement daemon with configurable interval and target rank policy.
-- [ ] D3-3.7.1.2 Add dry-run mode that logs intended kills without execution.
-- [ ] D3-3.7.1.3 Add safety guard to prevent host-critical process kills.
-- [ ] D3-3.7.1.4 Log every injected failure with timestamp and process metadata.
+- [x] D3-3.7.1.1 Implement daemon with configurable interval and target rank policy.
+- [x] D3-3.7.1.2 Add dry-run mode that logs intended kills without execution.
+- [x] D3-3.7.1.3 Add safety guard to prevent host-critical process kills.
+- [x] D3-3.7.1.4 Log every injected failure with timestamp and process metadata.
 
 ### D3-3.8 Distributed Profiling Setup
-- [ ] D3-3.8.1 Define profiling windows to reduce observer overhead.
-- [ ] D3-3.8.2 Define trace schema for communication, copy, and rollback events.
-- [ ] D3-3.8.3 Validate synchronized clocks across nodes for accurate ETTR.
+- [x] D3-3.8.1 Define profiling windows to reduce observer overhead.
+- [x] D3-3.8.2 Define trace schema for communication, copy, and rollback events.
+- [x] D3-3.8.3 Validate synchronized clocks across nodes for accurate ETTR.
 
 #### D3-3.8.1 Coding: Profiler Instrumentation
-- [ ] D3-3.8.1.1 Insert profiler contexts around sync and copy blocks.
-- [ ] D3-3.8.1.2 Tag events with rank and transaction ids.
-- [ ] D3-3.8.1.3 Export traces in format suitable for offline analysis.
+- [x] D3-3.8.1.1 Insert profiler contexts around sync and copy blocks.
+- [x] D3-3.8.1.2 Tag events with rank and transaction ids.
+- [x] D3-3.8.1.3 Export traces in format suitable for offline analysis.
 
 ### D3-3.9 Scalability Results Generation
-- [ ] D3-3.9.1 Define strong-scaling experiment matrix.
-- [ ] D3-3.9.2 Define weak-scaling experiment matrix.
-- [ ] D3-3.9.3 Define repetition count for statistical confidence.
+- [x] D3-3.9.1 Define strong-scaling experiment matrix.
+- [x] D3-3.9.2 Define weak-scaling experiment matrix.
+- [x] D3-3.9.3 Define repetition count for statistical confidence.
 
 #### D3-3.9.1 Coding: Scaling Automation
-- [ ] D3-3.9.1.1 Write launcher script for 1 to 4 node experiments.
-- [ ] D3-3.9.1.2 Parameterize run type (baseline or MTGS) and fault profile.
-- [ ] D3-3.9.1.3 Auto-store logs in run-id based directory structure.
-- [ ] D3-3.9.1.4 Auto-capture environment fingerprint with each run.
+- [x] D3-3.9.1.1 Write launcher script for 1 to 4 node experiments.
+- [x] D3-3.9.1.2 Parameterize run type (baseline or MTGS) and fault profile.
+- [x] D3-3.9.1.3 Auto-store logs in run-id based directory structure.
+- [x] D3-3.9.1.4 Auto-capture environment fingerprint with each run.
 
 ### D3-3.10 ETTR Measurement
-- [ ] D3-3.10.1 Define ETTR measurement boundary points.
-- [ ] D3-3.10.2 Define aggregation method (median, p95, worst-case).
-- [ ] D3-3.10.3 Define minimum event count for valid ETTR claims.
+- [x] D3-3.10.1 Define ETTR measurement boundary points.
+- [x] D3-3.10.2 Define aggregation method (median, p95, worst-case).
+- [x] D3-3.10.3 Define minimum event count for valid ETTR claims.
 
 #### D3-3.10.1 Coding: ETTR Timer
-- [ ] D3-3.10.1.1 Add timestamp on failure detection.
-- [ ] D3-3.10.1.2 Add timestamp on training-resume confirmation.
-- [ ] D3-3.10.1.3 Compute ETTR delta and persist per event.
-- [ ] D3-3.10.1.4 Emit ETTR summary table per run.
+- [x] D3-3.10.1.1 Add timestamp on failure detection.
+- [x] D3-3.10.1.2 Add timestamp on training-resume confirmation.
+- [x] D3-3.10.1.3 Compute ETTR delta and persist per event.
+- [x] D3-3.10.1.4 Emit ETTR summary table per run.
 
 ### D3-3.11 Sensitivity Analysis (Required)
-- [ ] D3-3.11.1 Define churn levels (low, medium, high) and exact frequencies.
-- [ ] D3-3.11.2 Define sensitivity parameters beyond churn (batch size, sequence length).
-- [ ] D3-3.11.3 Define acceptance threshold for throughput degradation.
+- [x] D3-3.11.1 Define churn levels (low, medium, high) and exact frequencies.
+- [x] D3-3.11.2 Define sensitivity parameters beyond churn (batch size, sequence length).
+- [x] D3-3.11.3 Define acceptance threshold for throughput degradation.
 
 #### D3-3.11.1 Coding: Churn Simulation Wrapper
-- [ ] D3-3.11.1.1 Build wrapper for 30-minute churn loops.
-- [ ] D3-3.11.1.2 Parameterize kill interval and target selection policy.
-- [ ] D3-3.11.1.3 Collect throughput and ETTR jointly per scenario.
-- [ ] D3-3.11.1.4 Output comparative summary per churn level.
+- [x] D3-3.11.1.1 Build wrapper for 30-minute churn loops.
+- [x] D3-3.11.1.2 Parameterize kill interval and target selection policy.
+- [x] D3-3.11.1.3 Collect throughput and ETTR jointly per scenario.
+- [x] D3-3.11.1.4 Output comparative summary per churn level.
 
 ### D3-3.12 Comparative Baseline Analysis and Measurable Improvement (Required)
 - [ ] D3-3.12.1 Define exact baseline comparators and fairness rules.

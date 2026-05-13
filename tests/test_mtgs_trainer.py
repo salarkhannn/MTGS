@@ -65,3 +65,6 @@ def test_mtgs_trainer_forced_abort_logs_rollback(tmp_path) -> None:
     events = (output_dir / "train_rank0.jsonl").read_text(encoding="utf-8")
     assert "rollback_complete" in events
     assert "step_aborted" in events
+    assert "ettr_recorded" in events
+    assert (output_dir / "ettr_events.csv").exists()
+    assert (output_dir / "ettr_summary.json").exists()

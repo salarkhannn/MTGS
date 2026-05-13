@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import random
+import subprocess
+import sys
+import platform
 from typing import Optional
 
 from .config import SeedConfig
@@ -44,3 +47,32 @@ def set_seed(config: SeedConfig) -> None:
 
     if config.deterministic:
         torch_mod.use_deterministic_algorithms(True, warn_only=True)
+
+
+def environment_fingerprint() -> dict[str, object]:
+    """Return a compact environment fingerprint for experiment directories."""
+
+    fingerprint: dict[str, object] = {
+        "python": sys.version,
+        "platform": platform.platform(),
+    }
+    try:
+        fingerprint["git_commit"] = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except Exception:
+        fingerprint["git_commit"] = "unknown"
+
+    np_mod = _try_import_numpy()
+    if np_mod is not None:
+        fingerprint["numpy"] = getattr(np_mod, "__version__", "unknown")
+
+    torch_mod = _try_import_torch()
+    if torch_mod is not None:
+        fingerprint["torch"] = getattr(torch_mod, "__version__", "unknown")
+        fingerprint["cuda_available"] = bool(torch_mod.cuda.is_available())
+        fingerprint["cuda_version"] = getattr(torch_mod.version, "cuda", None)
+
+    return fingerprint

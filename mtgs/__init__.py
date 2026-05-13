@@ -18,7 +18,7 @@ from .dataloader import (
 	shard_stats,
 	validate_no_overlap,
 )
-from .repro import set_seed
+from .repro import environment_fingerprint, set_seed
 
 __all__ = [
 	"__version__",
@@ -30,6 +30,7 @@ __all__ = [
 	"build_distributed_sampler",
 	"compute_shard_indices",
 	"effective_global_batch_size",
+	"environment_fingerprint",
 	"get_sampler_state",
 	"load_sampler_state",
 	"save_sampler_state",
