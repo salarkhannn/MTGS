@@ -20,19 +20,43 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--gpu-type", default="t4")
     parser.add_argument("--region", default="us-central1")
     parser.add_argument("--name-prefix", default="mtgs")
+    parser.add_argument("--ssh-port", type=int, default=22)
+    parser.add_argument("--nccl-port", type=int, default=29500)
+    parser.add_argument("--control-port", type=int, default=29501)
+    parser.add_argument(
+        "--extra-ports",
+        default="",
+        help="Comma-separated additional TCP ports to open",
+    )
     parser.add_argument("--state-dir", default=None)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()
 
 
+def parse_ports(port_list: str) -> list[int]:
+    ports: list[int] = []
+    for item in port_list.split(","):
+        value = item.strip()
+        if not value:
+            continue
+        ports.append(int(value))
+    return ports
+
+
 def build_plan(args: argparse.Namespace) -> Dict[str, Any]:
+    ports = [args.ssh_port, args.nccl_port, args.control_port]
+    ports.extend(parse_ports(args.extra_ports))
     return {
         "provider": args.provider,
         "node_count": args.node_count,
         "gpu_type": args.gpu_type,
         "region": args.region,
         "name_prefix": args.name_prefix,
+        "firewall": {
+            "protocol": "tcp",
+            "ports": sorted(set(ports)),
+        },
     }
 
 
