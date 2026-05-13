@@ -16,7 +16,10 @@ from .baseline import (
 )
 from .config import SeedConfig
 from .dataloader import build_distributed_sampler
+from .hooks.comm_hook import MTGSState, register_mtgs_comm_hook
+from .hooks.transaction import TransactionManager
 from .profiling.throughput import ThroughputLogger
+from .shadow.copy_stream import ShadowCopyManager
 from .repro import set_seed
 from .utils.distributed import cleanup_distributed, init_distributed
 from .utils.logging import JsonlLogger
@@ -49,6 +52,16 @@ def parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--checkpoint-path", default="")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--checkpoint-every", type=int, default=0)
+    parser.add_argument("--mtgs-disable-hook", action="store_true")
+    parser.add_argument("--mtgs-disable-shadow", action="store_true")
+    parser.add_argument("--mtgs-disable-2pc", action="store_true")
+    parser.add_argument("--mtgs-debug", action="store_true")
+    parser.add_argument(
+        "--mtgs-force-abort-step",
+        type=int,
+        default=0,
+        help="Inject a local MTGS abort decision at the selected step for tests.",
+    )
     return parser.parse_args(argv)
 
 
@@ -136,15 +149,58 @@ def run(args: argparse.Namespace) -> int:
         )
         events.log("checkpoint_loaded", path=args.checkpoint_path, step=state["step"])
 
+    mtgs_state: MTGSState | None = None
     if context.initialized:
         ddp = torch_mod.nn.parallel.DistributedDataParallel
         model = ddp(model, device_ids=[context.local_rank] if device.type == "cuda" else None)
+        if args.mode == "mtgs":
+            mtgs_state = MTGSState(
+                model=model,
+                optimizer=optimizer,
+                scheduler=scheduler,
+                process_group=None,
+                enable_hook=not args.mtgs_disable_hook,
+                enable_shadow=not args.mtgs_disable_shadow,
+                enable_2pc=not args.mtgs_disable_2pc,
+                debug=args.mtgs_debug,
+                rank=context.rank,
+                shadow_manager=ShadowCopyManager(pin_memory=device.type == "cuda"),
+                transaction_manager=TransactionManager(process_group=None),
+                logger=events,
+            )
+            register_mtgs_comm_hook(model, mtgs_state)
+            events.log(
+                "mtgs_hook_registered",
+                rank=context.rank,
+                enable_hook=mtgs_state.enable_hook,
+                enable_shadow=mtgs_state.enable_shadow,
+                enable_2pc=mtgs_state.enable_2pc,
+            )
+    elif args.mode == "mtgs":
+        mtgs_state = MTGSState(
+            model=model,
+            optimizer=optimizer,
+            scheduler=scheduler,
+            enable_hook=not args.mtgs_disable_hook,
+            enable_shadow=not args.mtgs_disable_shadow,
+            enable_2pc=not args.mtgs_disable_2pc,
+            debug=args.mtgs_debug,
+            rank=context.rank,
+            shadow_manager=ShadowCopyManager(pin_memory=False),
+            logger=events,
+        )
 
     loader = make_dataloader(args, context)
     batches = _infinite_batches(loader)
     losses: list[float] = []
 
     for step in range(1, args.steps + 1):
+        if mtgs_state is not None:
+            mtgs_state.start_step(step)
+            if not context.initialized:
+                mtgs_state.snapshot_if_needed()
+                mtgs_state.force_abort = args.mtgs_force_abort_step == step
+
         start_ns = metrics.now_ns()
         batch = next(batches)
         input_ids = batch["input_ids"].to(device)
@@ -154,6 +210,13 @@ def run(args: argparse.Namespace) -> int:
         outputs = model(input_ids=input_ids, labels=labels)
         loss = outputs["loss"]
         loss.backward()
+        if mtgs_state is not None and not context.initialized and mtgs_state.force_abort:
+            mtgs_state.rollback("forced_abort")
+            events.log("step_aborted", rank=context.rank, step=step, reason="forced_abort")
+            optimizer.zero_grad(set_to_none=True)
+            mtgs_state.complete_step()
+            continue
+
         optimizer.step()
         scheduler.step()
 
@@ -190,6 +253,9 @@ def run(args: argparse.Namespace) -> int:
                 extra={"mode": args.mode},
             )
             events.log("checkpoint_saved", path=args.checkpoint_path, step=step)
+
+        if mtgs_state is not None:
+            mtgs_state.complete_step()
 
     if args.checkpoint_path and args.checkpoint_every == 0:
         save_checkpoint(

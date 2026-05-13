@@ -210,51 +210,51 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.3.2.3 Export CSV with timestamp, rank, step, throughput, and status.
 
 ### D3-3.4 C-6 Novelty Core: Comm Hook Interception
-- [ ] D3-3.4.1 Define exact interception point in distributed stack.
-- [ ] D3-3.4.2 Define fallback path to default synchronization.
-- [ ] D3-3.4.3 Validate hook correctness on single-node multi-process dry run.
+- [x] D3-3.4.1 Define exact interception point in distributed stack.
+- [x] D3-3.4.2 Define fallback path to default synchronization.
+- [x] D3-3.4.3 Validate hook correctness on single-node multi-process dry run.
 
 #### D3-3.4.1 Coding: Hook Registration
-- [ ] D3-3.4.1.1 Implement register_comm_hook path with configurable enable flag.
-- [ ] D3-3.4.1.2 Attach per-bucket transaction metadata for tracing.
-- [ ] D3-3.4.1.3 Add debug mode for verbose hook lifecycle logs.
+- [x] D3-3.4.1.1 Implement register_comm_hook path with configurable enable flag.
+- [x] D3-3.4.1.2 Attach per-bucket transaction metadata for tracing.
+- [x] D3-3.4.1.3 Add debug mode for verbose hook lifecycle logs.
 
 ### D3-3.5 Shadow State Allocation Logic
-- [ ] D3-3.5.1 Define shadow granularity (layer-level or full-model snapshot).
-- [ ] D3-3.5.2 Define copy timing relative to gradient sync boundary.
-- [ ] D3-3.5.3 Define memory budget guardrails.
+- [x] D3-3.5.1 Define shadow granularity (layer-level or full-model snapshot).
+- [x] D3-3.5.2 Define copy timing relative to gradient sync boundary.
+- [x] D3-3.5.3 Define memory budget guardrails.
 
 #### D3-3.5.1 Coding: Pinned Memory
-- [ ] D3-3.5.1.1 Allocate pinned CPU tensors for shadow state.
-- [ ] D3-3.5.1.2 Validate allocation success and memory accounting.
-- [ ] D3-3.5.1.3 Add cleanup path to prevent RAM leak over long runs.
+- [x] D3-3.5.1.1 Allocate pinned CPU tensors for shadow state.
+- [x] D3-3.5.1.2 Validate allocation success and memory accounting.
+- [x] D3-3.5.1.3 Add cleanup path to prevent RAM leak over long runs.
 
 #### D3-3.5.2 Coding: Async Copy Stream
-- [ ] D3-3.5.2.1 Implement dedicated CUDA stream for shadow copies.
-- [ ] D3-3.5.2.2 Add stream synchronization to guarantee safe rollback state.
-- [ ] D3-3.5.2.3 Measure copy latency overhead and log per step.
+- [x] D3-3.5.2.1 Implement dedicated CUDA stream for shadow copies.
+- [x] D3-3.5.2.2 Add stream synchronization to guarantee safe rollback state.
+- [x] D3-3.5.2.3 Measure copy latency overhead and log per step.
 
 ### D3-3.6 Distributed Rollback and 2PC Logic
-- [ ] D3-3.6.1 Define vote pass/fail policy and quorum requirement.
-- [ ] D3-3.6.2 Define abort triggers (timeout, failed vote, missing rank).
-- [ ] D3-3.6.3 Define rollback completion criterion and resume point.
+- [x] D3-3.6.1 Define vote pass/fail policy and quorum requirement.
+- [x] D3-3.6.2 Define abort triggers (timeout, failed vote, missing rank).
+- [x] D3-3.6.3 Define rollback completion criterion and resume point.
 
 #### D3-3.6.1 Coding: 2PC Voting
-- [ ] D3-3.6.1.1 Implement prepare broadcast from coordinator.
-- [ ] D3-3.6.1.2 Implement all_gather vote collection.
-- [ ] D3-3.6.1.3 Implement deterministic commit or abort decision broadcast.
-- [ ] D3-3.6.1.4 Add timeout handling with explicit error codes.
+- [x] D3-3.6.1.1 Implement prepare broadcast from coordinator.
+- [x] D3-3.6.1.2 Implement all_gather vote collection.
+- [x] D3-3.6.1.3 Implement deterministic commit or abort decision broadcast.
+- [x] D3-3.6.1.4 Add timeout handling with explicit error codes.
 
 #### D3-3.6.2 Coding: State Reversion
-- [ ] D3-3.6.2.1 Implement exception-safe rollback handler.
-- [ ] D3-3.6.2.2 Reload model state from CPU shadow tensors.
-- [ ] D3-3.6.2.3 Validate optimizer and scheduler consistency after rollback.
-- [ ] D3-3.6.2.4 Log rollback reason, duration, and affected step id.
+- [x] D3-3.6.2.1 Implement exception-safe rollback handler.
+- [x] D3-3.6.2.2 Reload model state from CPU shadow tensors.
+- [x] D3-3.6.2.3 Validate optimizer and scheduler consistency after rollback.
+- [x] D3-3.6.2.4 Log rollback reason, duration, and affected step id.
 
 #### D3-3.6.3 Coding: MTGS Integration Script
-- [ ] D3-3.6.3.1 Integrate hook, shadow state, and 2PC modules into unified runner.
-- [ ] D3-3.6.3.2 Add runtime flags to enable or disable each MTGS component.
-- [ ] D3-3.6.3.3 Add integration test path for normal and failure cases.
+- [x] D3-3.6.3.1 Integrate hook, shadow state, and 2PC modules into unified runner.
+- [x] D3-3.6.3.2 Add runtime flags to enable or disable each MTGS component.
+- [x] D3-3.6.3.3 Add integration test path for normal and failure cases.
 
 ### D3-3.7 Fault Injection Scripting
 - [ ] D3-3.7.1 Define failure injection schedule distributions.
