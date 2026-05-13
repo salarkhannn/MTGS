@@ -189,7 +189,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 
 #### D3-3.2.1 Coding: Dataloader Logic
 - [x] D3-3.2.1.1 Implement DistributedSampler with rank-aware sharding.
-- [ ] D3-3.2.1.2 Validate no sample overlap across ranks in one epoch.
+- [x] D3-3.2.1.2 Validate no sample overlap across ranks in one epoch.
 - [ ] D3-3.2.1.3 Log shard statistics per rank for verification.
 - [ ] D3-3.2.1.4 Add restart-safe dataloader state restoration.
 
