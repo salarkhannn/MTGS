@@ -156,7 +156,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 ## Deliverable 3: Project Implementation, Evaluation, Presentation (Priority 2, blocked by D2)
 
 ### D3-G.0 Entry Gate
-- [ ] D3-G.0.1 Confirm D2 sign-off completed.
+- [x] D3-G.0.1 Confirm D2 sign-off completed.
 - [ ] D3-G.0.2 Confirm implementation plan baselines and acceptance metrics are frozen.
 - [ ] D3-G.0.3 Confirm experiment matrix is approved before runs.
 
