@@ -13,6 +13,8 @@ DATASETS_VERSION=${DATASETS_VERSION:-2.19.1}
 ACCELERATE_VERSION=${ACCELERATE_VERSION:-0.30.1}
 PSUTIL_VERSION=${PSUTIL_VERSION:-5.9.8}
 RUN_VALIDATION=${RUN_VALIDATION:-1}
+RUN_MANIFEST=${RUN_MANIFEST:-1}
+MANIFEST_PATH=${MANIFEST_PATH:-env_manifest.txt}
 
 if [ ! -d "$VENV_DIR" ]; then
   "$PYTHON_BIN" -m venv "$VENV_DIR"
@@ -36,4 +38,8 @@ pip install \
 if [ "$RUN_VALIDATION" = "1" ]; then
   "$PYTHON_BIN" -c "import torch, transformers, datasets, accelerate, psutil; print('torch', torch.__version__); print('transformers', transformers.__version__); print('datasets', datasets.__version__); print('accelerate', accelerate.__version__); print('psutil', psutil.__version__)"
   "$PYTHON_BIN" -c "import torch; print('cuda_available', torch.cuda.is_available())"
+fi
+
+if [ "$RUN_MANIFEST" = "1" ]; then
+  pip freeze > "$MANIFEST_PATH"
 fi
