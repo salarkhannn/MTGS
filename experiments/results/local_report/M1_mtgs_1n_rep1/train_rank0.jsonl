@@ -1,0 +1,12 @@
+{"backend": "gloo", "device": "cpu", "event": "run_start", "mode": "mtgs", "rank": 0, "timestamp": 1778703379.839221, "world_size": 1}
+{"event": "shadow_copied", "latency_ms": 0.5562, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 1, "timestamp": 1778703379.8421724}
+{"event": "step_complete", "loss": 3.7966175079345703, "rank": 0, "step": 1, "timestamp": 1778703379.848906, "tokens_per_second": 0.0}
+{"event": "shadow_copied", "latency_ms": 0.5368, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 2, "timestamp": 1778703379.8498857}
+{"event": "step_complete", "loss": 3.7583608627319336, "rank": 0, "step": 2, "timestamp": 1778703379.8520904, "tokens_per_second": 22011.280781400466}
+{"event": "shadow_copied", "latency_ms": 0.3562, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 3, "timestamp": 1778703379.8528008}
+{"event": "step_complete", "loss": 3.6962640285491943, "rank": 0, "step": 3, "timestamp": 1778703379.85528, "tokens_per_second": 21560.436598841126}
+{"event": "shadow_copied", "latency_ms": 0.6675, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 4, "timestamp": 1778703379.8562808}
+{"event": "step_complete", "loss": 3.781071424484253, "rank": 0, "step": 4, "timestamp": 1778703379.8582134, "tokens_per_second": 27813.99391568883}
+{"event": "shadow_copied", "latency_ms": 0.7399, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 5, "timestamp": 1778703379.859934}
+{"event": "step_complete", "loss": 3.730074405670166, "rank": 0, "step": 5, "timestamp": 1778703379.862203, "tokens_per_second": 21336.178157087612}
+{"event": "run_complete", "first_loss": 3.7966175079345703, "last_loss": 3.730074405670166, "rank": 0, "steps": 5, "timestamp": 1778703379.8625093}

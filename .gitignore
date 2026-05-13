@@ -25,6 +25,12 @@ ram_estimates.csv
 amdahl_speedup.pdf
 gustafson_speedup.pdf
 
+# Keep the committed Deliverable 3 local smoke evidence traceable.
+!experiments/results/
+experiments/results/*
+!experiments/results/local_report/
+!experiments/results/local_report/**
+
 # Logs
 *.log
 pip-log.txt

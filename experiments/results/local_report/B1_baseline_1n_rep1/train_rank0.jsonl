@@ -1,0 +1,7 @@
+{"backend": "gloo", "device": "cpu", "event": "run_start", "mode": "baseline", "rank": 0, "timestamp": 1778703375.1114407, "world_size": 1}
+{"event": "step_complete", "loss": 3.7966175079345703, "rank": 0, "step": 1, "timestamp": 1778703375.1197412, "tokens_per_second": 0.0}
+{"event": "step_complete", "loss": 3.7583608627319336, "rank": 0, "step": 2, "timestamp": 1778703375.1218948, "tokens_per_second": 22939.068100358425}
+{"event": "step_complete", "loss": 3.6962640285491943, "rank": 0, "step": 3, "timestamp": 1778703375.1240432, "tokens_per_second": 24224.07267221802}
+{"event": "step_complete", "loss": 3.781071424484253, "rank": 0, "step": 4, "timestamp": 1778703375.126651, "tokens_per_second": 18139.56124936228}
+{"event": "step_complete", "loss": 3.730074405670166, "rank": 0, "step": 5, "timestamp": 1778703375.129152, "tokens_per_second": 22322.985699337285}
+{"event": "run_complete", "first_loss": 3.7966175079345703, "last_loss": 3.730074405670166, "rank": 0, "steps": 5, "timestamp": 1778703375.129476}

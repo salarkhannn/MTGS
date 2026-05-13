@@ -1,0 +1,7 @@
+python=3.13.5
+torch=2.10.0+cpu
+pytest=9.0.2
+platform=Windows
+cuda_available=false
+local_validation_device=cpu
+notes=Generated for Deliverable 3 local verification; GPU nodes should archive per-run env_fingerprint.json.

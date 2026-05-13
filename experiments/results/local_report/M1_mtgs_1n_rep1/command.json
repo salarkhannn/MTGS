@@ -1,0 +1,23 @@
+[
+  "C:\\Python313\\python.exe",
+  "-m",
+  "mtgs.trainer",
+  "--mode",
+  "mtgs",
+  "--steps",
+  "5",
+  "--dataset-size",
+  "32",
+  "--batch-size",
+  "4",
+  "--seq-length",
+  "8",
+  "--vocab-size",
+  "32",
+  "--hidden-size",
+  "16",
+  "--device",
+  "cpu",
+  "--output-dir",
+  "experiments\\results\\local_report\\M1_mtgs_1n_rep1"
+]

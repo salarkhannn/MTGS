@@ -1,0 +1,15 @@
+id: M2
+mode: mtgs
+nodes: 1
+fault_profile: forced_abort
+force_abort_step: 2
+steps: 5
+repetitions: 1
+dataset_size: 32
+batch_size: 4
+seq_length: 8
+vocab_size: 32
+hidden_size: 16
+device: cpu
+repeat: 1
+run_id: M2_mtgs_1n_rep1

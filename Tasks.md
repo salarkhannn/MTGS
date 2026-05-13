@@ -311,60 +311,60 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-3.11.1.4 Output comparative summary per churn level.
 
 ### D3-3.12 Comparative Baseline Analysis and Measurable Improvement (Required)
-- [ ] D3-3.12.1 Define exact baseline comparators and fairness rules.
-- [ ] D3-3.12.2 Normalize results by hardware, runtime budget, and seed policy.
-- [ ] D3-3.12.3 Compute improvement percentages for ETTR and throughput.
-- [ ] D3-3.12.4 Test significance or confidence intervals where feasible.
-- [ ] D3-3.12.5 Record cases where MTGS underperforms and explain reasons.
+- [x] D3-3.12.1 Define exact baseline comparators and fairness rules.
+- [x] D3-3.12.2 Normalize results by hardware, runtime budget, and seed policy.
+- [x] D3-3.12.3 Compute improvement percentages for ETTR and throughput.
+- [x] D3-3.12.4 Test significance or confidence intervals where feasible.
+- [x] D3-3.12.5 Record cases where MTGS underperforms and explain reasons.
 
 #### D3-3.12.1 Coding: Result Processing and Visualization
-- [ ] D3-3.12.1.1 Parse all run logs into tidy analysis tables.
-- [ ] D3-3.12.1.2 Generate baseline-vs-MTGS ETTR comparison plots.
-- [ ] D3-3.12.1.3 Generate throughput under churn comparison plots.
-- [ ] D3-3.12.1.4 Generate scaling efficiency plots for both methods.
-- [ ] D3-3.12.1.5 Export plot-ready datasets for report reproducibility.
+- [x] D3-3.12.1.1 Parse all run logs into tidy analysis tables.
+- [x] D3-3.12.1.2 Generate baseline-vs-MTGS ETTR comparison plots.
+- [x] D3-3.12.1.3 Generate throughput under churn comparison plots.
+- [x] D3-3.12.1.4 Generate scaling efficiency plots for both methods.
+- [x] D3-3.12.1.5 Export plot-ready datasets for report reproducibility.
 
 ### D3-3.13 C-6 Novelty Justification and Trade-off Analysis (Required)
-- [ ] D3-3.13.1 State novel system-level improvement precisely.
-- [ ] D3-3.13.2 Demonstrate implementation completeness with code evidence.
-- [ ] D3-3.13.3 Demonstrate measurable improvement over baseline.
-- [ ] D3-3.13.4 Analyze network-vs-memory and latency-vs-overhead trade-offs.
-- [ ] D3-3.13.5 Analyze failure-rate regimes where novelty is most valuable.
-- [ ] D3-3.13.6 Document limitations and future improvements.
+- [x] D3-3.13.1 State novel system-level improvement precisely.
+- [x] D3-3.13.2 Demonstrate implementation completeness with code evidence.
+- [x] D3-3.13.3 Demonstrate measurable improvement over baseline.
+- [x] D3-3.13.4 Analyze network-vs-memory and latency-vs-overhead trade-offs.
+- [x] D3-3.13.5 Analyze failure-rate regimes where novelty is most valuable.
+- [x] D3-3.13.6 Document limitations and future improvements.
 
 ### D3-3.14 Reproducibility, Constraints, and Integrity Compliance
-- [ ] D3-3.14.1 Confirm multi-process or multi-node distributed behavior in all final runs.
-- [ ] D3-3.14.2 Package scripts for one-command rerun of key experiments.
-- [ ] D3-3.14.3 Include full environment and dependency manifest.
-- [ ] D3-3.14.4 Include raw logs and processed result artifacts.
-- [ ] D3-3.14.5 Verify all figures and claims map to reproducible run ids.
-- [ ] D3-3.14.6 Verify proper citation of external methods and code influences.
+- [x] D3-3.14.1 Confirm multi-process or multi-node distributed behavior in all final runs.
+- [x] D3-3.14.2 Package scripts for one-command rerun of key experiments.
+- [x] D3-3.14.3 Include full environment and dependency manifest.
+- [x] D3-3.14.4 Include raw logs and processed result artifacts.
+- [x] D3-3.14.5 Verify all figures and claims map to reproducible run ids.
+- [x] D3-3.14.6 Verify proper citation of external methods and code influences.
 
 ### D3-3.15 Final Presentation and Live Demonstration
-- [ ] D3-3.15.1 Build presentation outline mapped to evaluation components.
-- [ ] D3-3.15.2 Prepare architecture and protocol visuals from D2 assets.
-- [ ] D3-3.15.3 Prepare baseline-vs-MTGS result slides with key metrics.
-- [ ] D3-3.15.4 Prepare live demo script with deterministic sequence of commands.
-- [ ] D3-3.15.5 Rehearse failure injection and recovery demo multiple times.
-- [ ] D3-3.15.6 Prepare fallback recorded demo in case of live infra failure.
-- [ ] D3-3.15.7 Finalize speaker assignments and timing.
+- [x] D3-3.15.1 Build presentation outline mapped to evaluation components.
+- [x] D3-3.15.2 Prepare architecture and protocol visuals from D2 assets.
+- [x] D3-3.15.3 Prepare baseline-vs-MTGS result slides with key metrics.
+- [x] D3-3.15.4 Prepare live demo script with deterministic sequence of commands.
+- [x] D3-3.15.5 Rehearse failure injection and recovery demo multiple times.
+- [x] D3-3.15.6 Prepare fallback recorded demo in case of live infra failure.
+- [x] D3-3.15.7 Finalize speaker assignments and timing.
 
 ---
 
 ## Evaluation Coverage Checklist (Scoring Alignment)
-- [ ] EV-1 Literature review and gap analysis evidence is complete (10%).
-- [ ] EV-2 Proposal defense continuity from D1 to D2 and D3 is explicit (10%).
-- [ ] EV-3 System design quality meets required completeness and depth (20%).
-- [ ] EV-4 Experimental methodology is rigorous and reproducible (20%).
-- [ ] EV-5 Results and analysis include statistical and trade-off depth (20%).
-- [ ] EV-6 Novelty and C-6 justification are demonstrated with measured gains (20%).
+- [x] EV-1 Literature review and gap analysis evidence is complete (10%).
+- [x] EV-2 Proposal defense continuity from D1 to D2 and D3 is explicit (10%).
+- [x] EV-3 System design quality meets required completeness and depth (20%).
+- [x] EV-4 Experimental methodology is rigorous and reproducible (20%).
+- [x] EV-5 Results and analysis include statistical and trade-off depth (20%).
+- [x] EV-6 Novelty and C-6 justification are demonstrated with measured gains (20%).
 
 ## Submission Readiness Checklist
-- [ ] SR-1 Code repository is clean, structured, and reproducible.
-- [ ] SR-2 Design report and final report are both complete.
-- [ ] SR-3 Raw logs, processed data, and plots are archived.
-- [ ] SR-4 All external sources are cited and attribution is complete.
-- [ ] SR-5 Final package passes internal quality review.
+- [x] SR-1 Code repository is clean, structured, and reproducible.
+- [x] SR-2 Design report and final report are both complete.
+- [x] SR-3 Raw logs, processed data, and plots are archived.
+- [x] SR-4 All external sources are cited and attribution is complete.
+- [x] SR-5 Final package passes internal quality review.
 
 
 # In Progress:

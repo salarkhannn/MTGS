@@ -1,0 +1,14 @@
+{"backend": "gloo", "device": "cpu", "event": "run_start", "mode": "mtgs", "rank": 0, "timestamp": 1778703384.5844991, "world_size": 1}
+{"event": "shadow_copied", "latency_ms": 0.3481, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 1, "timestamp": 1778703384.5873022}
+{"event": "step_complete", "loss": 3.7966175079345703, "rank": 0, "step": 1, "timestamp": 1778703384.5961206, "tokens_per_second": 0.0}
+{"event": "shadow_copied", "latency_ms": 0.6695, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 2, "timestamp": 1778703384.5972183}
+{"duration_ms": 0.6396, "event": "rollback_complete", "rank": 0, "reason": "forced_abort", "restored_tensors": 5, "step": 2, "timestamp": 1778703384.5995915}
+{"event": "step_aborted", "rank": 0, "reason": "forced_abort", "step": 2, "timestamp": 1778703384.6001697}
+{"ettr_ms": 1.6682147979736328, "event": "ettr_recorded", "event_id": "rank0-step2-forced-abort", "rank": 0, "step": 2, "timestamp": 1778703384.6016955}
+{"event": "shadow_copied", "latency_ms": 0.4641, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 3, "timestamp": 1778703384.6025157}
+{"event": "step_complete", "loss": 3.6990838050842285, "rank": 0, "step": 3, "timestamp": 1778703384.60478, "tokens_per_second": 21176.626298722786}
+{"event": "shadow_copied", "latency_ms": 0.4641, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 4, "timestamp": 1778703384.6056263}
+{"event": "step_complete", "loss": 3.7841830253601074, "rank": 0, "step": 4, "timestamp": 1778703384.6084018, "tokens_per_second": 16186.959380848803}
+{"event": "shadow_copied", "latency_ms": 0.6461, "pinned": false, "rank": 0, "shadow_bytes": 4352, "step": 5, "timestamp": 1778703384.609471}
+{"event": "step_complete", "loss": 3.7337398529052734, "rank": 0, "step": 5, "timestamp": 1778703384.6120565, "tokens_per_second": 18547.49898568365}
+{"event": "run_complete", "first_loss": 3.7966175079345703, "last_loss": 3.7337398529052734, "rank": 0, "steps": 5, "timestamp": 1778703384.6124117}
