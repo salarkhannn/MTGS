@@ -183,7 +183,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 ### D3-3.2 Workload Modeling and Data Pipeline
 - [x] D3-3.2.1 Freeze dataset version and preprocessing pipeline.
 - [x] D3-3.2.2 Define tokenization strategy and sequence length.
-- [ ] D3-3.2.3 Define global batch size and micro-batch decomposition.
+- [x] D3-3.2.3 Define global batch size and micro-batch decomposition.
 - [ ] D3-3.2.4 Define epoch/step budget for each experiment type.
 - [ ] D3-3.2.5 Define random seed policy and determinism settings.
 
