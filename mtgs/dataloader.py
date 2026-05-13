@@ -80,3 +80,27 @@ def validate_no_overlap(
         "overlap_found": overlap_found,
         "per_rank_counts": [len(shard) for shard in shards],
     }
+
+
+def shard_stats(
+    dataset_size: int,
+    world_size: int,
+    drop_last: bool = True,
+) -> Dict[str, Any]:
+    shards = [
+        compute_shard_indices(dataset_size, world_size, rank, drop_last)
+        for rank in range(world_size)
+    ]
+    unique_indices = set()
+    for shard in shards:
+        unique_indices.update(shard)
+
+    overlap_info = validate_no_overlap(dataset_size, world_size, drop_last)
+    return {
+        "dataset_size": dataset_size,
+        "world_size": world_size,
+        "drop_last": drop_last,
+        "per_rank_counts": [len(shard) for shard in shards],
+        "unique_coverage": len(unique_indices),
+        "overlap_found": overlap_info["overlap_found"],
+    }

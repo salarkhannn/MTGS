@@ -8,7 +8,12 @@ from .config import (
 	TokenizerConfig,
 	effective_global_batch_size,
 )
-from .dataloader import build_distributed_sampler, compute_shard_indices, validate_no_overlap
+from .dataloader import (
+	build_distributed_sampler,
+	compute_shard_indices,
+	shard_stats,
+	validate_no_overlap,
+)
 from .repro import set_seed
 
 __all__ = [
@@ -21,6 +26,7 @@ __all__ = [
 	"build_distributed_sampler",
 	"compute_shard_indices",
 	"effective_global_batch_size",
+	"shard_stats",
 	"set_seed",
 	"validate_no_overlap",
 ]
