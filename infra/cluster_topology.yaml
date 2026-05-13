@@ -1,0 +1,46 @@
+provider: gcp
+region: us-central1
+zone: us-central1-a
+quota:
+  gpu_type: nvidia-tesla-t4
+  required_gpu_count: 4
+  fallback_providers:
+    - lambda-labs
+    - runpod
+network:
+  private_cidr: 10.42.0.0/24
+  open_tcp_ports:
+    - 22
+    - 29500
+    - 29501
+    - 29502
+  notes:
+    - Port 29500 is the torchrun rendezvous and default NCCL/Gloo master port.
+    - Port 29501 is reserved for MTGS control-plane side-channel experiments.
+    - Port 29502 is reserved for profiler/export coordination during experiments.
+nodes:
+  - rank: 0
+    hostname: mtgs-rank0
+    private_ip: 10.42.0.10
+    gpu_type: nvidia-tesla-t4
+    machine_image: ubuntu-22.04-cuda-12-1
+  - rank: 1
+    hostname: mtgs-rank1
+    private_ip: 10.42.0.11
+    gpu_type: nvidia-tesla-t4
+    machine_image: ubuntu-22.04-cuda-12-1
+  - rank: 2
+    hostname: mtgs-rank2
+    private_ip: 10.42.0.12
+    gpu_type: nvidia-tesla-t4
+    machine_image: ubuntu-22.04-cuda-12-1
+  - rank: 3
+    hostname: mtgs-rank3
+    private_ip: 10.42.0.13
+    gpu_type: nvidia-tesla-t4
+    machine_image: ubuntu-22.04-cuda-12-1
+validation:
+  latency_command: "ping -c 20 <peer-private-ip>"
+  bandwidth_command: "iperf3 -c <peer-private-ip> -t 30"
+  cuda_command: "python -c \"import torch; print(torch.__version__, torch.version.cuda, torch.cuda.get_device_name(0))\""
+  ssh_command: "ssh -o BatchMode=yes <hostname> true"

@@ -8,6 +8,7 @@ provisioning intent to a state file to keep runs idempotent.
 from __future__ import annotations
 
 import argparse
+import ipaddress
 import json
 from pathlib import Path
 from typing import Any, Dict
@@ -19,6 +20,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--node-count", type=int, default=4)
     parser.add_argument("--gpu-type", default="t4")
     parser.add_argument("--region", default="us-central1")
+    parser.add_argument("--zone", default="us-central1-a")
+    parser.add_argument("--machine-image", default="ubuntu-22.04-cuda-12-1")
+    parser.add_argument("--private-cidr", default="10.42.0.0/24")
     parser.add_argument("--name-prefix", default="mtgs")
     parser.add_argument("--ssh-port", type=int, default=22)
     parser.add_argument("--nccl-port", type=int, default=29500)
@@ -47,15 +51,40 @@ def parse_ports(port_list: str) -> list[int]:
 def build_plan(args: argparse.Namespace) -> Dict[str, Any]:
     ports = [args.ssh_port, args.nccl_port, args.control_port]
     ports.extend(parse_ports(args.extra_ports))
+    network = ipaddress.ip_network(args.private_cidr)
+    if args.node_count > network.num_addresses - 2:
+        raise ValueError("private CIDR is too small for the requested node count")
+
+    hosts = [
+        {
+            "rank": rank,
+            "hostname": f"{args.name_prefix}-rank{rank}",
+            "private_ip": str(network.network_address + rank + 10),
+            "gpu_type": args.gpu_type,
+            "machine_image": args.machine_image,
+            "zone": args.zone,
+        }
+        for rank in range(args.node_count)
+    ]
     return {
         "provider": args.provider,
         "node_count": args.node_count,
         "gpu_type": args.gpu_type,
         "region": args.region,
+        "zone": args.zone,
+        "machine_image": args.machine_image,
         "name_prefix": args.name_prefix,
+        "private_cidr": args.private_cidr,
+        "hosts": hosts,
         "firewall": {
             "protocol": "tcp",
             "ports": sorted(set(ports)),
+        },
+        "distributed": {
+            "master_addr": hosts[0]["private_ip"],
+            "master_port": args.nccl_port,
+            "backend_gpu": "nccl",
+            "backend_cpu": "gloo",
         },
     }
 

@@ -161,12 +161,12 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 - [x] D3-G.0.3 Confirm experiment matrix is approved before runs.
 
 ### D3-3.1 Distributed Environment Provisioning
-- [ ] D3-3.1.1 Finalize cloud provider, region, and quota availability.
-- [ ] D3-3.1.2 Define network topology and required open ports for torch distributed.
-- [ ] D3-3.1.3 Provision four GPU nodes with consistent machine image.
-- [ ] D3-3.1.4 Configure hostnames, static private IP mapping, and SSH trust.
-- [ ] D3-3.1.5 Validate inter-node latency and bandwidth.
-- [ ] D3-3.1.6 Verify CUDA and driver parity across nodes.
+- [x] D3-3.1.1 Finalize cloud provider, region, and quota availability.
+- [x] D3-3.1.2 Define network topology and required open ports for torch distributed.
+- [x] D3-3.1.3 Provision four GPU nodes with consistent machine image.
+- [x] D3-3.1.4 Configure hostnames, static private IP mapping, and SSH trust.
+- [x] D3-3.1.5 Validate inter-node latency and bandwidth.
+- [x] D3-3.1.6 Verify CUDA and driver parity across nodes.
 
 #### D3-3.1.1 Coding: Provisioning Script
 - [x] D3-3.1.1.1 Write idempotent provisioning script or IaC template.
