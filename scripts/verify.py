@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-command local verification for Deliverable 3."""
+"""One-command local verification for MTGS."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-# Deliverable 2: Full System Design Document (MTGS)
+# MTGS: Full System Design Document
 
 ## 1. Scope Lock and Traceability
 
