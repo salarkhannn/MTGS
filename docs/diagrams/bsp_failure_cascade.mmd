@@ -1,0 +1,29 @@
+gantt
+    title BSP Failure Cascade — 4-Node Training Job
+    dateFormat  X
+    axisFormat  t=%s
+
+    section Rank 0
+    Forward / Backward        :done,    r0a, 0, 1
+    All-Reduce (waiting...)   :crit,    r0b, 1, 3
+    HANG — blocked            :crit,    r0c, 3, 4
+
+    section Rank 1
+    Forward / Backward        :done,    r1a, 0, 1
+    All-Reduce (waiting...)   :crit,    r1b, 1, 3
+    HANG — blocked            :crit,    r1c, 3, 4
+
+    section Rank 2
+    Forward / Backward        :done,    r2a, 0, 1
+    CRASH (SIGKILL / OOM)     :crit,    r2b, 1, 2
+
+    section Rank 3
+    Forward / Backward        :done,    r3a, 0, 1
+    All-Reduce (waiting...)   :crit,    r3b, 1, 3
+    HANG — blocked            :crit,    r3c, 3, 4
+
+    section Job
+    Normal Training           :done,    j1,  0, 1
+    Collective Sync Begins    :active,  j2,  1, 2
+    Fault Detected            :crit,    j3,  2, 3
+    JOB TERMINATES            :crit,    j4,  3, 4

@@ -8,5 +8,5 @@
 | Hugging Face Transformers | [Transformers model loading documentation](https://huggingface.co/docs/transformers/main/models) | API basis for planned DistilBERT/AutoModel workload integration. |
 
 All MTGS transaction logic, shadow-state rollback code, experiment wrappers, and
-analysis scripts in this repository are project-authored adaptations around
+analysis scripts in this repository are original implementations built on top of
 those public APIs.

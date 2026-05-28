@@ -15,9 +15,4 @@
 
 Suggested timing is 12 minutes plus 3 minutes for questions.
 
-## Speaker Timing
-
-- Jameel: slides 1-4, problem and architecture, 4 minutes
-- Umair: slides 5-7, protocol and rollback internals, 4 minutes
-- Sameer: slides 8-12, demo, results, and trade-offs, 4 minutes
-- Shared: questions, 3 minutes
+Total presentation time is 12 minutes plus 3 minutes for questions.

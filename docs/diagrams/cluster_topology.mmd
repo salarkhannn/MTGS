@@ -1,0 +1,19 @@
+graph TD
+    R0["<b>Rank 0</b> — Coordinator<br/>1× T4 GPU · 16GB CPU RAM"]
+    R1["<b>Rank 1</b><br/>1× T4 GPU · 16GB CPU RAM"]
+    R2["<b>Rank 2</b><br/>1× T4 GPU · 16GB CPU RAM"]
+    R3["<b>Rank 3</b><br/>1× T4 GPU · 16GB CPU RAM"]
+
+    R0 <-->|"Data: Ring-All-Reduce"| R1
+    R1 <-->|"Data: Ring-All-Reduce"| R2
+    R2 <-->|"Data: Ring-All-Reduce"| R3
+    R3 <-->|"Data: Ring-All-Reduce"| R0
+
+    R0 -.->|"Control: PREPARE / COMMIT / ABORT"| R1
+    R0 -.->|"Control: PREPARE / COMMIT / ABORT"| R2
+    R0 -.->|"Control: PREPARE / COMMIT / ABORT"| R3
+
+    style R0 fill:#1e3a5f,stroke:#f59e0b,stroke-width:2px,color:#fff
+    style R1 fill:#1e293b,stroke:#14b8a6,stroke-width:2px,color:#fff
+    style R2 fill:#1e293b,stroke:#14b8a6,stroke-width:2px,color:#fff
+    style R3 fill:#1e293b,stroke:#14b8a6,stroke-width:2px,color:#fff

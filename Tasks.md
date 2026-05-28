@@ -120,7 +120,7 @@ Suggested workflow per item: TODO -> IN PROGRESS -> REVIEW -> DONE.
 ### D2-2.9 Implementation Plan (Required)
 - [x] D2-2.9.1 Break implementation into milestones (baseline, MTGS hook, rollback, evaluation).
 - [x] D2-2.9.2 Define deliverables for each milestone (scripts, logs, plots, report sections).
-- [x] D2-2.9.3 Assign team owners for each milestone and backup owner.
+- [x] D2-2.9.3 Assign milestone owners and backup owners.
 - [x] D2-2.9.4 Define milestone entry and exit criteria.
 - [x] D2-2.9.5 Define integration points and branch strategy.
 - [x] D2-2.9.6 Define verification checkpoints per milestone.

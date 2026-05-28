@@ -12,7 +12,7 @@
 | **Model** | DistilBERT fine-tuning on WikiText-103 |
 | **Cluster** | 4× T4 GPU nodes (cloud spot instances) |
 | **Targets** | ETTR < 1s, communication overhead < 5%, per-batch rollback |
-| **Team** | Jameel Anwar, Umair Naeem, Sameer Ahmed |
+| **Author** | Jameel Anwar (salarkhannn) |
 
 ---
 
@@ -84,7 +84,7 @@ scripts/
 | Spot instance churn too aggressive | Med | Med | Use churn as a feature (natural fault injection), cap experiment window |
 | Reproducibility drift across runs | Med | Med | Pin all seeds, freeze package versions, log environment fingerprint |
 | Cloud GPU quota denied | Low | Critical | Apply early, have fallback provider (Lambda Labs / RunPod) |
-| Schedule slippage | Med | High | Phase 4 experiments parallelizable across team members |
+| Schedule slippage | Med | High | Phase 4 experiments parallelizable across multiple nodes |
 
 ### 2.5 Phase 2 Exit Criteria
 
@@ -454,7 +454,7 @@ This template signals research maturity and produces visually polished output.
 
 | Slide | Content | Source |
 |---|---|---|
-| 1 | Title, team, university | — |
+| 1 | Title, university | — |
 | 2 | Problem: BSP failure cascade visual | Excalidraw diagram |
 | 3 | Gap: why existing solutions fall short | Literature comparison table |
 | 4 | MTGS architecture overview | Phase 2 architecture diagram |
@@ -666,17 +666,7 @@ This provides a more accessible explanation than the paper and signals communica
 
 ---
 
-## Team Responsibility Suggestion
 
-| Phase | Jameel | Umair | Sameer |
-|---|---|---|---|
-| **P2: Design** | Architecture + diagrams | Formal models (consistency, failure) | Performance modeling + scripts |
-| **P3: Implementation** | Comm hook + 2PC (core novelty) | Shadow state + rollback | Baseline + profiling + fault injection |
-| **P4: Experiments** | Experiment orchestration | Cloud infra + provisioning | Data collection + analysis notebook |
-| **P5: Report** | System design sections | Evaluation sections | Introduction + related work |
-| **P6: Polish** | README + Docker | CI/CD + tests | Presentation + demo |
-
----
 
 ## Timeline (Aggressive)
 

@@ -1,0 +1,12 @@
+timeline
+    title MTGS Failure Detection and Recovery
+    System Normal : t=0 : Forward & Backward Pass Complete
+    Snapshot : t=0+async : Async GPU→CPU shadow copy (dedicated stream)
+    Sync Start : t=1 : Ring-All-Reduce begins
+    Node Failure : t=2 : Rank 2 crashes (SIGKILL/OOM)
+    NCCL Timeout : t=2+500ms : NCCL_ASYNC_ERROR_HANDLING triggers
+    Detection : t=2+500ms : Coordinator detects missing vote
+    Global Abort : t=2+505ms : Coordinator broadcasts ABORT to all ranks
+    Rollback : t=2+510ms : All ranks restore params from CPU shadow
+    Training Resumed : t=2+511.67ms : Next training step begins
+    Note "ETTR = 1.67 ms<br/>vs minutes for disk checkpoint" at t=2+511.67ms

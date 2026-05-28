@@ -42,7 +42,7 @@ machine image from `infra/cluster_topology.yaml`.
 
 ## SSH Trust and Host Mapping
 
-After instances are created, each node receives the same team SSH public key.
+After instances are created, each node receives the same SSH public key.
 The host map should be installed on every rank:
 
 ```text

@@ -1,0 +1,23 @@
+graph TD
+    subgraph GPU_VRAM["GPU VRAM (High Bandwidth ~900 GB/s)"]
+        AP["Active Parameters<br/>(~264 MB for DistilBERT fp32)"]
+        GR["Gradients<br/>(Same size as params)"]
+        OS["Optimizer State (Adam)<br/>(2× param size)"]
+    end
+
+    subgraph CPU_RAM["CPU RAM (Pinned, ~26 GB/s)"]
+        SS["Shadow State<br/>(+1× params = ~264 MB)<br/>Rollback target"]
+        FOS["Fallback Optimizer State<br/>(optional)"]
+    end
+
+    subgraph Stream["Dedicated CUDA Stream"]
+        COPY["async copy_()<br/>non_blocking=True"]
+    end
+
+    AP -->|"pre-sync snapshot"| COPY
+    COPY -->|"GPU → CPU pinned"| SS
+
+    SS -.->|"on abort: synchronize +<br/>param.data.copy_(shadow)"| AP
+
+    style SS fill:#f96,stroke:#333,color:#000
+    style COPY fill:#bbf,stroke:#333,color:#000

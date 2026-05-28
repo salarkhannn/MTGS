@@ -1,0 +1,31 @@
+graph TB
+    subgraph Control_Plane["Control Plane (2PC)"]
+        C["Coordinator<br/>Rank 0"]
+    end
+
+    subgraph Data_Plane["Data Plane (Ring-All-Reduce)"]
+        direction LR
+        R0["Rank 0<br/>Node 0<br/>GPU T4"]
+        R1["Rank 1<br/>Node 1<br/>GPU T4"]
+        R2["Rank 2<br/>Node 2<br/>GPU T4"]
+        R3["Rank 3<br/>Node 3<br/>GPU T4"]
+    end
+
+    R0 <-->|"Gradient Sync<br/>NCCL All-Reduce"| R1
+    R1 <--> R2
+    R2 <--> R3
+    R3 <--> R0
+
+    C -.->|"Prepare / Commit / Abort<br/>INT8 broadcast"| R1
+    C -.->|"Prepare / Commit / Abort<br/>INT8 broadcast"| R2
+    C -.->|"Prepare / Commit / Abort<br/>INT8 broadcast"| R3
+
+    R1 -.->|"Vote (all_gather)<br/>INT8 [0|1]"| C
+    R2 -.->|"Vote (all_gather)<br/>INT8 [0|1]"| C
+    R3 -.->|"Vote (all_gather)<br/>INT8 [0|1]"| C
+
+    subgraph Shadow_Layer["Shadow State Layer"]
+        GPU["GPU VRAM<br/>Active Params<br/>Gradients"]
+        CPU["CPU Pinned RAM<br/>Shadow Params<br/>(Rollback Target)"]
+        GPU -.->|"Async CUDA Stream<br/>non_blocking copy"| CPU
+    end

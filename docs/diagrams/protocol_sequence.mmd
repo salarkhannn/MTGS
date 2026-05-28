@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant W as Worker (Rank i)
+    participant C as Coordinator (Rank 0)
+    participant AR as Ring-All-Reduce
+
+    Note over W: Forward & Backward Pass
+
+    W->>W: Snapshot params to<br/>CPU shadow state
+    W->>AR: All-Reduce Gradients
+    AR-->>W: Reduced Gradients
+
+    C->>W: PREPARE (broadcast)
+    activate W
+    W->>W: Health check:<br/>gradients finite?<br/>memory OK?
+    W-->>C: VOTE (all_gather)<br/>INT8 [1=healthy, 0=fail]
+    deactivate W
+
+    alt All votes == 1 (Commit Path)
+        C->>W: COMMIT (broadcast)
+        activate W
+        W->>W: Apply gradients<br/>Optimizer step<br/>Release shadow
+        deactivate W
+        Note over W: State V_{t+1} ✓
+    else Any vote == 0 or timeout (Abort Path)
+        C->>W: ABORT (broadcast)
+        activate W
+        W->>W: Rollback from CPU shadow<br/>Zero out gradients
+        deactivate W
+        Note over W: State V_t restored ✓<br/>Batch will be retried
+    end
